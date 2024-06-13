@@ -1,0 +1,136 @@
+﻿@model Event.Models.RegistrationViewModel
+@{
+    ViewData["Title"] = "Registration";
+    Layout = "~/Views/Shared/_Layout_LoginRegister.cshtml";
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <span><b>Success!</b> - @TempData["Error"]</span>
+    </div>
+}
+
+<style>
+    body {
+        background-image: url('https://st4.depositphotos.com/3930503/19991/i/450/depositphotos_199910082-stock-photo-light-blue-gradient-background-blue.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+    }
+</style>
+<div class="center-container1">
+<div class="container container-background ">
+    
+    <div class="row mt-3 ">
+        <div class="col-5 card offset-3  ">
+
+            <div class="text-center">
+                <h1 class="text-info">Register Here</h1>
+
+            </div>
+            <form method="post" asp-action="Registration">
+
+                <div class="form-group">
+
+                    Name <input type="text" asp-for="Name" class="form-control" autocomplete="off" placeholder="Enter Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+
+                    Password <input type="password" asp-for="Password" class="form-control" autocomplete="off" placeholder="Enter Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+
+                    Email <input type="text" asp-for="Email" class="form-control" autocomplete="off" placeholder="Enter Email" title="Invalid email address" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+
+                    Business Name <input type="text" asp-for="BusinessName" class="form-control" autocomplete="off" placeholder="Enter Business Name" />
+                    <span asp-validation-for="BusinessName" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+
+                    Phone Number<input type="tel" inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '' )" asp-for="PhoneNumber" class="form-control" autocomplete="off" placeholder="Enter Phone Number" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    Mode of Business &nbsp;&nbsp;&nbsp; <input asp-for="ModeOfBusiness" type="radio" value="Product" /> Product
+                    <input asp-for="ModeOfBusiness" type="radio" value="Service" /> Service
+                </div>
+                <br />
+                <div class="form-group">
+                    Category &nbsp;&nbsp;&nbsp;
+                    <select id="dropdown" name="Category" asp-for="Category">
+                        <option value="Select"></option>
+                        <option value="Food Court">Food Court</option>
+                        <option value="Games">Games</option>
+                        <option value="Promotion and Marketing">Promotion and Marketing</option>
+                        <option value="Technology and Infrastructure">Technology and Infrastructure</option>
+                        <option value="Emergency Services">Emergency Services</option>
+                    </select>
+                </div>
+                <br />
+                <center>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg mb-1" value="Register">Register</button>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        Already have an Account? <a class="text-primary" asp-controller="Login" asp-action="Login">Login Here</a>
+                    </div>
+                    <br />
+                </center>
+
+            </form>
+        </div>
+    </div>
+
+    </div>
+
+@section Scripts {
+        @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+        <script>
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                var passwordInput = document.getElementById("Password");
+                var messageDiv = document.getElementById("message");
+
+                passwordInput.addEventListener("input", function () {
+                    var Password = passwordInput.value;
+
+                    // Validate password
+                    var isValid = validatePassword(Password);
+
+                    // Display validation message
+                    if (isValid) {
+                        messageDiv.textContent = "";
+                        //messageDiv.style.color = "green";
+                    } else {
+                        messageDiv.textContent = "Password must be at least 8 characters long and should contain at least one uppercase letter, one lowercase letter, one number, and a special character";
+                        messageDiv.style.color = "red";
+                    }
+                });
+
+                function validatePassword(Password) {
+                    // return password.length >= 8;
+                    var minLength = 8;
+                    var hasUpperCase = /[A-Z]/.test(Password);
+                    var hasLowerCase = /[a-z]/.test(Password);
+                    var hasNumbers = /\d/.test(Password);
+                    var hasSpecialChars = /[!@@$#%^&(),.?":{}|<>]/.test(Password);
+                    return Password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars;
+                }
+            });
+        </script>
+    }
+

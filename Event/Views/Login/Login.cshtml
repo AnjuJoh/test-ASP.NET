@@ -1,0 +1,66 @@
+﻿@model Event.Models.LoginViewModel;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout_LoginRegister.cshtml";
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <span> - @TempData["Error"]</span>
+    </div>
+}
+<style>
+    body {
+        background-image: url('https://st4.depositphotos.com/3930503/19991/i/450/depositphotos_199910082-stock-photo-light-blue-gradient-background-blue.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+    }
+</style>
+
+
+<div class="center-container background-image ">
+
+<div class="container rounded">
+    <div class="row ">
+        <div class="col-4 card offset-3 mt-5 ">
+            <div class="text-center">
+                <h1 class="text-info">Login</h1>
+
+            </div>
+            <form method="post" asp-action="Login">
+
+                <div class="form-group rounded">
+
+                    Email <input type="text" asp-for="Email" class="form-control" autocomplete="off" placeholder="Enter Email" />
+                </div>
+                <br />
+                <div class="form-group">
+
+                    Password <input type="password" asp-for="Password" class="form-control" autocomplete="off" placeholder="Enter Password" />
+                    
+                </div>
+                <br />
+                <center>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg mb-1" value="Login">Login</button>
+                    </div>
+
+                </center>
+
+            </form>
+            <br />
+                <div class="form-group text-center">
+                    <a class="text-primary" asp-controller="Login" asp-action="ForgotPassword">Forgot Password?</a>
+                </div>
+                <br />
+            <div class="form-group text-center">
+                Don't have an Account? <a class="text-primary" asp-controller="Register" asp-action="Registration">Register Here</a>
+            </div>
+           
+           
+            <br />
+        </div>
+        </div>
+</div>
+    </div>

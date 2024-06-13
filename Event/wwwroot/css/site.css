@@ -1,0 +1,54 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+.image-container {
+    width: 1120px; 
+    height: 540px;
+    
+   
+    
+}
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        margin-left: 0px; 
+    }
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+  /*  background-image: url('../images/how-to-create-cool-website-backgrounds-the-ultimate-guide.png');
+    height:200px;*/
+}
+.text-dark {
+    color: white !important; /* Override default text color */
+}
+.navbar-brand {
+    color: white !important; /* Override default text color */
+    font-weight: bold;
+}
+
+.center-container {
+   
+    margin-left:180px;
+
+}
+.center-container1 {
+    margin-left: 100px;
+}
